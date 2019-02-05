@@ -10,8 +10,7 @@ const app = express();
 
 app.get('/',(req,res)=>{
   const twiml = new MessagingResponse();
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-   res.end(twiml.toString());
+  
 })
 
 app.get('/sms', (req, res) => {
@@ -28,7 +27,9 @@ app.get('/sms', (req, res) => {
      to:  process.env.receiverNo,
    })
    .then(message => console.log("Success"))
-  .done();  
+  .done(); 
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+   res.end(twiml.toString()); 
 });
 
 
